@@ -20,6 +20,10 @@
           <el-input v-model="form.password" type="password" placeholder="請輸入密碼" show-password />
         </el-form-item>
 
+        <el-form-item label="確認密碼" prop="confirmPassword">
+          <el-input v-model="form.confirmPassword" type="password" placeholder="請再次輸入密碼" show-password />
+        </el-form-item>
+
         <el-form-item label="聯絡電話" prop="phone">
           <el-input v-model="form.phone" placeholder="請輸入聯絡電話" />
         </el-form-item>
@@ -51,10 +55,12 @@ const router = useRouter()
 const form = reactive({
   username: '',
   password: '',
+  confirmPassword: '', // 新增確認密碼
   phone: '',
   email: '',
   address: '',
 })
+
 
 const rules: FormRules = {
   username: [
@@ -64,6 +70,19 @@ const rules: FormRules = {
   password: [
     { required: true, message: '請輸入密碼', trigger: 'blur' },
     { min: 6, message: '密碼至少 6 碼', trigger: 'blur' }
+  ],
+  confirmPassword: [
+    { required: true, message: '請再次輸入密碼', trigger: 'blur' },
+    {
+      validator: (rule, value, callback) => {
+        if (value !== form.password) {
+          callback(new Error('兩次輸入的密碼不一致'))
+        } else {
+          callback()
+        }
+      },
+      trigger: 'blur'
+    }
   ],
   phone: [
     { required: true, message: '請輸入電話', trigger: 'blur' },
@@ -77,6 +96,7 @@ const rules: FormRules = {
     { required: true, message: '請輸入地址', trigger: 'blur' }
   ],
 }
+
 
 const registerForm = ref<FormInstance>()
 
