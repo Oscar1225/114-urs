@@ -77,6 +77,7 @@ import proposedstatus from "@/views/buyer/record management/proposedstatus.vue"
 import historicalrecords from "@/views/buyer/record management/historicalrecords.vue"
 import serviceform from "@/views/buyer/customer service/serviceform.vue"
 import serviceemail from "@/views/buyer/customer service/serviceemail.vue"
+import buyerLogout from "@/views/buyer/buyerLogoutPage.vue"
 
 
 const currentComponent = ref<any>(productlist) // 預設顯示商品列表
@@ -95,7 +96,7 @@ const handleSelect = (key: string) => {
   else if (key === 'historicalrecords') currentComponent.value = historicalrecords
   else if (key === 'serviceform') currentComponent.value = serviceform
   else if (key === 'serviceemail') currentComponent.value = serviceemail
-  else if (key === 'logout') handleLogout()
+  else if (key === 'logout') currentComponent.value = buyerLogout
 }
 
 
