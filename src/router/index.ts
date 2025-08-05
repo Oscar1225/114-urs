@@ -6,6 +6,7 @@ import SellermainPage from '@/views/seller/sellermainPage.vue'
 import RoleSelectPage from '@/views/roleSelectPage.vue'
 import AdminLoginPage from '@/views/admin/adminLoginPage.vue'
 import AdminMainPage from '@/views/admin/AdminMainPage.vue'
+import SellerRegister from '@/views/seller/sellerRegister.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -17,6 +18,7 @@ const router = createRouter({
   //賣家
     {path: '/seller/login',name: 'SellerLogin', component:SellerLoginPage},
     {path: '/seller/main',name: 'Sellermain', component:SellermainPage},
+    {path: '/seller/register',name: 'SellerRegister', component:SellerRegister},
   //管理員
     {path: '/admin/login',name: 'AdminLogin', component:AdminLoginPage},
     {path: '/admin/main',name: 'Adminmain', component:AdminMainPage},

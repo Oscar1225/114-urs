@@ -55,7 +55,7 @@ const handleLogin = () => {
 }
 
 const handleRegister = () => {
-  alert('導向註冊頁面')
+  router.push('/seller/register')
 }
 
 const handleForgot = () => {
