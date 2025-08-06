@@ -34,11 +34,19 @@ export const useUserStore = defineStore('user', () => {
     duration: 1000, // 顯示 1秒後自動消失
     })
   }
+  function register(){
+    ElMessage({
+    message: '註冊成功!',
+    type: 'success',
+    showClose: false,
+    duration: 1000, // 顯示 1秒後自動消失
+    })
+  }
 
   // 自動儲存到 localStorage（監聽 ref 變化）
   watch(isSelect, (val) => localStorage.setItem('isSelect', String(val)))
   watch(role, (val) => localStorage.setItem('role', val))
   watch(isLogin, (val) => localStorage.setItem('isLogin', String(val)))
 
-  return { isSelect, role, isLogin, select, login, logout }
+  return { isSelect, role, isLogin, select, login, logout,register }
 })

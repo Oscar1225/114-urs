@@ -41,6 +41,30 @@
         </el-form-item>
       </el-form>
     </el-card>
+
+    <!-- 手機驗證 Dialog -->
+    <el-dialog v-model="verifyPhoneDialogVisible" title="手機驗證" width="400px" center>
+      <el-card shadow="never">
+        <p>請輸入發送至手機 {{ form.phone }} 的驗證碼：</p>
+        <el-input v-model="phoneVerificationCode" placeholder="輸入驗證碼" class="mb-3" />
+        <div class="d-flex justify-content-end">
+          <el-button @click="verifyPhoneDialogVisible = false">取消</el-button>
+          <el-button type="primary" @click="handlePhoneVerify">確認</el-button>
+        </div>
+      </el-card>
+    </el-dialog>
+
+    <!-- Email 驗證 Dialog -->
+    <el-dialog v-model="verifyEmailDialogVisible" title="Email 驗證" width="400px" center>
+      <el-card shadow="never">
+        <p>請輸入發送至 Email {{ form.email }} 的驗證碼：</p>
+        <el-input v-model="emailVerificationCode" placeholder="輸入驗證碼" class="mb-3" />
+        <div class="d-flex justify-content-end">
+          <el-button @click="verifyEmailDialogVisible = false">取消</el-button>
+          <el-button type="primary" @click="handleEmailVerify">確認</el-button>
+        </div>
+      </el-card>
+    </el-dialog>
   </div>
 </template>
 
@@ -49,18 +73,21 @@ import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ArrowLeft } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 
+const user = useUserStore()
 const router = useRouter()
 
 const form = reactive({
   username: '',
   password: '',
-  confirmPassword: '', // 新增確認密碼
+  confirmPassword: '',
   phone: '',
   email: '',
   address: '',
 })
 
+const registerForm = ref<FormInstance>()
 
 const rules: FormRules = {
   username: [
@@ -90,29 +117,61 @@ const rules: FormRules = {
   ],
   email: [
     { required: true, message: '請輸入 Email', trigger: 'blur' },
-    { type: 'email', message: 'Email 格式錯誤', trigger:'blur' }
+    { type: 'email', message: 'Email 格式錯誤', trigger: 'blur' }
   ],
   address: [
     { required: true, message: '請輸入地址', trigger: 'blur' }
   ],
 }
 
+// 驗證視窗與驗證碼
+const verifyPhoneDialogVisible = ref(false)
+const verifyEmailDialogVisible = ref(false)
 
-const registerForm = ref<FormInstance>()
+const phoneVerificationCode = ref('')
+const emailVerificationCode = ref('')
 
+// 點擊註冊
 const handleRegister = () => {
   registerForm.value?.validate((valid) => {
     if (valid) {
-      console.log('註冊資料:', form)
-      alert('註冊成功！')
+      // TODO: 呼叫後端發送手機驗證碼
+      verifyPhoneDialogVisible.value = true
     } else {
       console.warn('表單驗證未通過')
     }
   })
 }
 
+// 確認手機驗證碼
+const handlePhoneVerify = () => {
+  const isCodeCorrect = phoneVerificationCode.value === '123456' // 假設驗證碼
+  if (isCodeCorrect) {
+    verifyPhoneDialogVisible.value = false
+    // TODO: 呼叫後端發送 Email 驗證碼
+    verifyEmailDialogVisible.value = true
+  } else {
+    alert('手機驗證碼錯誤，請重新輸入')
+  }
+}
+
+// 確認 Email 驗證碼
+const handleEmailVerify = () => {
+  const isCodeCorrect = emailVerificationCode.value === '654321' // 假設驗證碼
+  if (isCodeCorrect) {
+    verifyEmailDialogVisible.value = false
+    user.register()
+    console.log('註冊表單資料：', form)
+
+    // TODO: 呼叫後端完成註冊
+    router.push('/seller/login')
+  } else {
+    alert('Email 驗證碼錯誤，請重新輸入')
+  }
+}
+
 const goBack = () => {
-  router.push('/seller/login') // 返回首頁或登入頁
+  router.push('/seller/login')
 }
 </script>
 
