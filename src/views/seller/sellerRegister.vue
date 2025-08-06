@@ -120,7 +120,7 @@ const rules: FormRules = {
     { type: 'email', message: 'Email 格式錯誤', trigger: 'blur' }
   ],
   address: [
-    { required: true, message: '請輸入地址', trigger: 'blur' }
+    { required: false, message: '請輸入地址', trigger: 'blur' }
   ],
 }
 
@@ -151,7 +151,7 @@ const handlePhoneVerify = () => {
     // TODO: 呼叫後端發送 Email 驗證碼
     verifyEmailDialogVisible.value = true
   } else {
-    alert('手機驗證碼錯誤，請重新輸入')
+    user.registerError()
   }
 }
 
@@ -166,7 +166,7 @@ const handleEmailVerify = () => {
     // TODO: 呼叫後端完成註冊
     router.push('/seller/login')
   } else {
-    alert('Email 驗證碼錯誤，請重新輸入')
+    user.registerError()
   }
 }
 
