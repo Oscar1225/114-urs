@@ -47,12 +47,12 @@
           </div>
 
           <div class="col-md-6">
-            <el-form-item label="地址" prop="address">
+            <el-form-item label="地址(選填)" prop="address">
               <el-input v-model="form.address" placeholder="請輸入地址" />
             </el-form-item>
           </div>
           <div class="col-md-6">
-            <el-form-item label="Line Id" prop="LineId">
+            <el-form-item label="Line Id(選填)" prop="LineId">
               <el-input v-model="form.LineId" placeholder="請輸入 Line Id" />
             </el-form-item>
           </div>
