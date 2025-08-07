@@ -42,9 +42,9 @@ export const useUserStore = defineStore('user', () => {
     duration: 1000, // 顯示 1秒後自動消失
     })
   }
-  function registerError(){
+  function registerError(code: string) {
     ElMessage({
-    message: '驗證碼錯誤，請重新輸入！',
+    message: code,
     type: 'error',
     showClose: false,
     duration: 1000, // 顯示 1秒後自動消失

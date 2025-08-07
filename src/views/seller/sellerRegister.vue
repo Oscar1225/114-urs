@@ -176,7 +176,7 @@ const handleRegister = () => {
       // TODO: 呼叫後端發送手機驗證碼
       verifyPhoneDialogVisible.value = true
     } else {
-      console.warn('表單驗證未通過')
+      user.registerError("表單驗證未通過，請檢查輸入！")
     }
   })
 }
@@ -189,7 +189,7 @@ const handlePhoneVerify = () => {
     // TODO: 呼叫後端發送 Email 驗證碼
     verifyEmailDialogVisible.value = true
   } else {
-    user.registerError()
+    user.registerError("驗證碼錯誤，請重新輸入！")
   }
 }
 
@@ -204,7 +204,7 @@ const handleEmailVerify = () => {
     // TODO: 呼叫後端完成註冊
     router.push('/seller/login')
   } else {
-    user.registerError()
+    user.registerError("驗證碼錯誤，請重新輸入！")
   }
 }
 
