@@ -1,6 +1,6 @@
 <template>
   <div class=" d-flex justify-content-center align-items-center vh-100 bg-image">
-    <el-card class="w-100" style="max-width: 400px; padding: 20px;">
+    <el-card class="w-100 form-card">
       <h3 class="text-center mb-4">格外品媒合系統身分選擇</h3>
 
       <el-form>
@@ -51,5 +51,12 @@ const adminlogin = () => {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.form-card {
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.96);
+  border-radius: 12px;
 }
 </style>

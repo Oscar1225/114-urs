@@ -2,7 +2,7 @@
   <div class="bg-image d-flex justify-content-center align-items-center vh-100 position-relative">
     <!-- 返回箭頭 -->
 
-    <el-card class="w-100 position-relative" style="max-width: 400px; padding: 20px;">
+    <el-card class="w-100 position-relative form-card">
       <el-button
         class="position-absolute"
         style="top: 10px; left: 10px; background: transparent; border: none; box-shadow: none;"
@@ -86,5 +86,12 @@ a:hover {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.form-card {
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.96);
+  border-radius: 12px;
 }
 </style>
