@@ -38,6 +38,7 @@ import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { ArrowLeft } from '@element-plus/icons-vue'
+import { LoadType } from '@/@types/response.types';
 
 const user = useUserStore()
 const router = useRouter()
