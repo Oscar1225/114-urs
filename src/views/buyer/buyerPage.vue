@@ -65,6 +65,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { Shop } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 
@@ -75,17 +76,14 @@ import productdetails from "@/views/buyer/product/productdetails.vue"
 import apply from "@/views/buyer/matching/apply.vue"
 import proposedstatus from "@/views/buyer/record management/proposedstatus.vue"
 import historicalrecords from "@/views/buyer/record management/historicalrecords.vue"
-import serviceform from "@/views/buyer/customer service/serviceform.vue"
-import serviceemail from "@/views/buyer/customer service/serviceemail.vue"
+import serviceform from "@/views/buyer/customerservice/serviceform.vue"
+import serviceemail from "@/views/buyer/customerservice/serviceemail.vue"
 import buyerLogout from "@/views/buyer/buyerLogoutPage.vue"
-
 
 const currentComponent = ref<any>(productlist) // 預設顯示商品列表
 
-
 const user = useUserStore()
 const router = useRouter()
-
 
 const handleSelect = (key: string) => {
   if (key === 'productsearch') currentComponent.value = productsearch
@@ -98,7 +96,6 @@ const handleSelect = (key: string) => {
   else if (key === 'serviceemail') currentComponent.value = serviceemail
   else if (key === 'logout') currentComponent.value = buyerLogout
 }
-
 
 function handleLogout() {
   user.logout()

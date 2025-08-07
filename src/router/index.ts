@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import buyerLoginPage from '@/views/buyer/buyerLoginPage.vue'
 import BuyermainPage from '@/views/buyer/buyermainPage.vue'
+import buyerRegister from '@/views/buyer/buyerRegister.vue'
 import SellerLoginPage from '@/views/seller/sellerLoginPage.vue'
 import SellermainPage from '@/views/seller/sellermainPage.vue'
 import RoleSelectPage from '@/views/roleSelectPage.vue'
@@ -15,6 +16,7 @@ const router = createRouter({
   //買家
     {path: '/buyer/login',name: 'BuyerLogin', component:buyerLoginPage},
     {path: '/buyer/main',name: 'Buyermain', component:BuyermainPage},
+    {path: '/buyer/register',name: 'BuyerRegister', component:buyerRegister},
   //賣家
     {path: '/seller/login',name: 'SellerLogin', component:SellerLoginPage},
     {path: '/seller/main',name: 'Sellermain', component:SellermainPage},
