@@ -25,10 +25,6 @@
           <el-button type="primary" class="w-100" @click="handleLogin">登入</el-button>
         </el-form-item>
       </el-form>
-
-      <div class="text-end mt-2">
-        <a href="#" @click.prevent="handleForgot">忘記密碼？</a>
-      </div>
     </el-card>
   </div>
 </template>
@@ -52,9 +48,6 @@ const handleLogin = () => {
   console.log('登入帳號:', form.username, '密碼:', form.password)
   user.login()
   router.push('/admin/main')
-}
-const handleForgot = () => {
-  alert('忘記密碼流程')
 }
 
 const goBack = () => {

@@ -1,7 +1,7 @@
 <template>
   <div class=" d-flex justify-content-center align-items-center vh-100 bg-image">
     <el-card class="w-100 form-card">
-      <h3 class="text-center mb-4">格外品媒合系統身分選擇</h3>
+      <h3 class="text-center mb-4">登入身分選擇</h3>
 
       <el-form>
         <el-form-item>
@@ -56,7 +56,7 @@ const adminlogin = () => {
 .form-card {
   max-width: 400px;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.96);
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
 }
 </style>
