@@ -1,6 +1,6 @@
 <template>
   <div class="bg-image d-flex justify-content-center align-items-center vh-100 position-relative">
-    <el-card class="w-100 position-relative" style="max-width: 500px; padding: 20px;">
+    <el-card class="form-card position-relative">
       <!-- 返回箭頭 -->
       <el-button
         class="position-absolute"
@@ -12,33 +12,57 @@
       <h3 class="text-center mb-4">買家註冊</h3>
 
       <el-form :model="form" :rules="rules" ref="registerForm" label-position="top">
-        <el-form-item label="帳號" prop="username">
-          <el-input v-model="form.username" placeholder="請輸入帳號" />
-        </el-form-item>
+        <div class="row">
+          <div class="col-md-6">
+            <el-form-item label="帳號(暱稱&登入帳號)" prop="username">
+              <el-input v-model="form.username" placeholder="請輸入帳號" />
+            </el-form-item>
+          </div>
+          <div class="col-md-6">
+            <el-form-item label="真實姓名" prop="realname">
+              <el-input v-model="form.realname" placeholder="請輸入真實姓名" />
+            </el-form-item>
+          </div>
 
-        <el-form-item label="密碼" prop="password">
-          <el-input v-model="form.password" type="password" placeholder="請輸入密碼" show-password />
-        </el-form-item>
+          <div class="col-md-6">
+            <el-form-item label="密碼" prop="password">
+              <el-input v-model="form.password" type="password" placeholder="請輸入密碼" show-password />
+            </el-form-item>
+          </div>
+          <div class="col-md-6">
+            <el-form-item label="確認密碼" prop="confirmPassword">
+              <el-input v-model="form.confirmPassword" type="password" placeholder="請再次輸入密碼" show-password />
+            </el-form-item>
+          </div>
 
-        <el-form-item label="確認密碼" prop="confirmPassword">
-          <el-input v-model="form.confirmPassword" type="password" placeholder="請再次輸入密碼" show-password />
-        </el-form-item>
+          <div class="col-md-6">
+            <el-form-item label="聯絡電話" prop="phone">
+              <el-input v-model="form.phone" placeholder="請輸入聯絡電話" />
+            </el-form-item>
+          </div>
+          <div class="col-md-6">
+            <el-form-item label="聯絡 Email" prop="email">
+              <el-input v-model="form.email" placeholder="請輸入 Email" />
+            </el-form-item>
+          </div>
 
-        <el-form-item label="聯絡電話" prop="phone">
-          <el-input v-model="form.phone" placeholder="請輸入聯絡電話" />
-        </el-form-item>
+          <div class="col-md-6">
+            <el-form-item label="地址(選填)" prop="address">
+              <el-input v-model="form.address" placeholder="請輸入地址" />
+            </el-form-item>
+          </div>
+          <div class="col-md-6">
+            <el-form-item label="Line Id(選填)" prop="LineId">
+              <el-input v-model="form.LineId" placeholder="請輸入 Line Id" />
+            </el-form-item>
+          </div>
 
-        <el-form-item label="聯絡 Email" prop="email">
-          <el-input v-model="form.email" placeholder="請輸入 Email" />
-        </el-form-item>
-
-        <el-form-item label="地址" prop="address">
-          <el-input v-model="form.address" placeholder="請輸入地址" />
-        </el-form-item>
-
-        <el-form-item>
-          <el-button type="primary" class="w-100" @click="handleRegister">註冊</el-button>
-        </el-form-item>
+          <div class="col-12">
+            <el-form-item>
+              <el-button type="primary" class="w-100" @click="handleRegister">註冊</el-button>
+            </el-form-item>
+          </div>
+        </div>
       </el-form>
     </el-card>
 
@@ -80,11 +104,13 @@ const router = useRouter()
 
 const form = reactive({
   username: '',
+  realname: '',
   password: '',
   confirmPassword: '',
   phone: '',
   email: '',
   address: '',
+  LineId: '',
 })
 
 const registerForm = ref<FormInstance>()
@@ -97,6 +123,15 @@ const rules: FormRules = {
   password: [
     { required: true, message: '請輸入密碼', trigger: 'blur' },
     { min: 6, message: '密碼至少 6 碼', trigger: 'blur' }
+  ],
+  realname: [
+  { required: true, message: '請輸入真實姓名', trigger: 'blur' },
+  { min: 2, message: '真實姓名至少需 2 個字', trigger: 'blur' },
+  {
+    pattern: /^[\u4e00-\u9fa5a-zA-Z\s]+$/, // 中文或英文（可含空格）
+    message: '真實姓名只能包含中英文與空格',
+    trigger: 'blur'
+  }
   ],
   confirmPassword: [
     { required: true, message: '請再次輸入密碼', trigger: 'blur' },
@@ -122,6 +157,9 @@ const rules: FormRules = {
   address: [
     { required: true, message: '請輸入地址', trigger: 'blur' }
   ],
+  LineId:[
+    { required: false, message: '請輸入Line Id', trigger: 'blur' }
+  ]
 }
 
 // 驗證視窗與驗證碼
@@ -183,5 +221,14 @@ const goBack = () => {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 720px; /* 原本是 500，可加寬或視需求調整 */
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.96); /* 淡白背景提升可讀性 */
+  border-radius: 12px;
+  margin: 0 20px; /* 👉 關鍵：左右留白 */
 }
 </style>
